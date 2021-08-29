@@ -19,8 +19,8 @@ public class FTCalDetector extends FTDetector {
     
     String viewName;
     
-    private final int nCrystalX = 22;
-    private final int nCrystalY = nCrystalX;
+    private final int nCrystalX = 46;
+    private final int nCrystalY = 10;
     
     private final double crystal_size = 15;
     
@@ -38,18 +38,18 @@ public class FTCalDetector extends FTDetector {
             if(doesThisCrystalExist(component)) {
                 int iy = component / nCrystalX;
                 int ix = component - iy * nCrystalX;               
-                double xcenter = crystal_size * (nCrystalX - ix - 0.5);
+                double xcenter = crystal_size * (ix + 0.5);
+                if (ix > nCrystalX/2-1) {
+                    ix = ix -(nCrystalX/2-1);
+                } else {
+                    ix = ix - nCrystalX/2;
+                }
+                if (iy > nCrystalY/2-1) {
+                    iy = iy -(nCrystalY/2-1);
+                } else {
+                    iy = iy - nCrystalY/2;
+                }
                 double ycenter = crystal_size * (nCrystalY - iy - 0.5 + 1.);
-                if (ix > 10) {
-                    ix = ix - 10;
-                } else {
-                    ix = ix - 11;
-                }
-                if (iy > 10) {
-                    iy = iy - 10;
-                } else {
-                    iy = iy - 11;
-                }
                 points.add(1, 1, component, new ShapePoint(ix,iy));
                 DetectorShape2D shape = new DetectorShape2D(DetectorType.FTCAL, 1, 1, component);
                 shape.createBarXY(crystal_size, crystal_size);
@@ -113,9 +113,9 @@ public class FTCalDetector extends FTDetector {
     public int getIX(int component) {
         int i = this.points.get(1, 1, component).x();
         if (i > 0) {
-            i = i + 10;
+            i = i +(nCrystalX/2-1);
         } else {
-            i = i + 11;
+            i = i + nCrystalX/2;
         }
         return i;
     }
@@ -123,9 +123,9 @@ public class FTCalDetector extends FTDetector {
     public int getIY(int component) {
         int i = this.points.get(1, 1, component).y();
         if (i > 0) {
-            i = i + 10;
+            i = i +(nCrystalY/2-1);
         } else {
-            i = i + 11;
+            i = i + nCrystalY/2;
         }
         return i;    
     }
@@ -135,8 +135,8 @@ public class FTCalDetector extends FTDetector {
     }
         
     public int getComponent(double x, double y) {
-        int ix = (int) ((x+11*crystal_size)/crystal_size);
-        int iy = (int) ((y+11*crystal_size)/crystal_size);
+        int ix = (int) ((x+nCrystalX/2*crystal_size)/crystal_size);
+        int iy = (int) ((y+nCrystalY/2*crystal_size)/crystal_size);
         return iy*nCrystalX+ix; 
     }
 
@@ -180,16 +180,13 @@ public class FTCalDetector extends FTDetector {
     
     private boolean doesThisCrystalExist(int id) {
 
-        boolean crystalExist=false;
+        boolean crystalExist=true;
         int iy = id / nCrystalX;
         int ix = id - iy * nCrystalX;
 
-        double xcrystal = crystal_size * (nCrystalX - ix - 0.5);
-        double ycrystal = crystal_size * (nCrystalY - iy - 0.5);
-        double rcrystal = Math.sqrt(Math.pow(xcrystal - crystal_size * 11, 2.0) + Math.pow(ycrystal - crystal_size * 11, 2.0));
-        if (rcrystal > crystal_size * 4 && rcrystal < crystal_size * 11) {
-            crystalExist=true;
-        }
+        if (ix<0 && ix>= nCrystalX) crystalExist=false;
+        else if(iy<0 && iy>= nCrystalY) crystalExist=false;
+        else if((ix>12 && ix<22) && (iy==4 || iy==5)) crystalExist=false;
         return crystalExist;
     }
     

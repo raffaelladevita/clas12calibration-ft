@@ -95,7 +95,7 @@ public class DetectorEventDecoder {
         });
         
         tablesTrans = Arrays.asList(new String[]{
-            "/daq/tt/ftcal","/daq/tt/fthodo","/daq/tt/ltcc",
+            "/test/ft/ftcal/tt","/daq/tt/fthodo","/daq/tt/ltcc",
             "/daq/tt/ec","/daq/tt/ftof","/daq/tt/htcc","/daq/tt/dc","/daq/tt/ctof","/daq/tt/svt",
             "/daq/tt/rf","/daq/tt/bmt","/daq/tt/fmt"
         });
@@ -104,7 +104,7 @@ public class DetectorEventDecoder {
         
         keysFitter   = Arrays.asList(new String[]{"FTCAL","FTOF","LTCC","EC","HTCC","CTOF"});
         tablesFitter = Arrays.asList(new String[]{
-            "/daq/fadc/ftcal","/daq/fadc/ftof","/daq/fadc/ltcc","/daq/fadc/ec",
+            "/test/ft/ftcal/fadc","/daq/fadc/ftof","/daq/fadc/ltcc","/daq/fadc/ec",
             "/daq/fadc/htcc","/daq/fadc/ctof"
         });
         fitterManager.init(keysFitter, tablesFitter);

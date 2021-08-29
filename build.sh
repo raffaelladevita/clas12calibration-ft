@@ -6,7 +6,7 @@
 #=================================================================
 # Maven Build
 
-set suites = (ftCalCalib ftCalLedAndCosmics ftHodoCalibNovice ftHodoCalibHipo)
+set suites = (ftCalLedAndCosmics)
 
 foreach suite ($suites)
     echo Building $suite ...

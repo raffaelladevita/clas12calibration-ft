@@ -447,23 +447,23 @@ public class FTCalLedModule extends JPanel implements DetectorListener,Calibrati
         H_TCROSS   = new H1F("TCROSS", 505, 0, 505);
         H_LED_N    = new H1F("EVENT" , 505, 0, 505);
 
-        crystalID       = new double[332];
-        pedestalMEAN    = new double[332];
-        noiseRMS        = new double[332];
-        timeCross       = new double[332];
-        timeHalf        = new double[332];
-        fullWidthHM     = new double[332];
-        crystalPointers = new int[484];
-        ledCharge  = new double[484];
-        ledCharge2 = new double[484];
-        ledAmpli   = new double[484];
-        ledAmpli2  = new double[484];
-        ledWidth   = new double[484];
-        ledWidth2  = new double[484];
-        ledEvent   = new int[484];
-        ledNEvents = new int[484];                
+        crystalID       = new double[442];
+        pedestalMEAN    = new double[442];
+        noiseRMS        = new double[442];
+        timeCross       = new double[442];
+        timeHalf        = new double[442];
+        fullWidthHM     = new double[442];
+        crystalPointers = new int[460];
+        ledCharge  = new double[460];
+        ledCharge2 = new double[460];
+        ledAmpli   = new double[460];
+        ledAmpli2  = new double[460];
+        ledWidth   = new double[460];
+        ledWidth2  = new double[460];
+        ledEvent   = new int[460];
+        ledNEvents = new int[460];                
         int ipointer=0;
-        for(int i=0; i<484; i++) {
+        for(int i=0; i<460; i++) {
             if(this.detector.hasComponent(i)) {
                 crystalPointers[i]=ipointer;
                 crystalID[ipointer]=i;
@@ -663,7 +663,7 @@ public class FTCalLedModule extends JPanel implements DetectorListener,Calibrati
             H_fADC_N.reset();
             H_LED_N.reset();
         }
-        for (int i = 0; i < 484; i++) {
+        for (int i = 0; i < 460; i++) {
             ledCharge[i] = 0;
             ledCharge2[i] = 0;
             ledAmpli[i] = 0;

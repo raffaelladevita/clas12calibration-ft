@@ -20,7 +20,7 @@
             <url>https://clasweb.jlab.org/clas12maven</url>
         </repository>
     </repositories>
-    <name>FTCalLedAndCosmics</name>
+    <name>ECalLedAndCosmics</name>
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
