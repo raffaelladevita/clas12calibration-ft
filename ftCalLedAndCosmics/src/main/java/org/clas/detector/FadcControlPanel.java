@@ -58,7 +58,7 @@ public class FadcControlPanel extends JPanel implements ActionListener {
     public int CCDB_nsa = 0;
     public int CCDB_nsb = 0;
     public boolean useMode7 = true;
-    public boolean useCCDB = true;
+    public boolean useCCDB = false;
 
     public FadcControlPanel() {
 
@@ -89,11 +89,12 @@ public class FadcControlPanel extends JPanel implements ActionListener {
         bG7a.setActionCommand("CCDB");
         bG7a.setToolTipText("Use CCDB fADC integration parameters");
         bG7a.addActionListener(this);
-        bG7a.setSelected(true);
         this.mode7.add(bG7b);
         bG7b.setActionCommand("User");
         bG7b.setToolTipText("Use user-selected fADC integration parameters");
         bG7b.addActionListener(this);
+        if(useCCDB) bG7a.setSelected(true);
+        else bG7b.setSelected(true);
         this.mode7.add(new JLabel("TET"));
         this.mode7.add(ttet);
         ttet.setEnabled(false);
@@ -179,10 +180,12 @@ public class FadcControlPanel extends JPanel implements ActionListener {
 
     public void setTET(int tet) {
         this.bG7b.setSelected(true);
+        this.useCCDB=false;
         this.ttet.setEnabled(true);
         this.tnsa.setEnabled(true);
         this.tnsb.setEnabled(true);
         this.tet = tet;
+        System.out.println("\nPulse threshold set to: " + tet);
         updateGUI();
     }
 
@@ -257,7 +260,7 @@ public class FadcControlPanel extends JPanel implements ActionListener {
         if (e.getActionCommand().compareTo("NSB") == 0) {
             bG7b.setSelected(true);
             this.nsb = Integer.parseInt(tnsb.getText());
-            System.out.println("\nSetting nsa to: " + nsb);
+            System.out.println("\nSetting nsb to: " + nsb);
         }
         if (e.getActionCommand().compareTo("CCDB") == 0) {
             this.useCCDB = true;

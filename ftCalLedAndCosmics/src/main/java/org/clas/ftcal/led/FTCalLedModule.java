@@ -289,9 +289,9 @@ public class FTCalLedModule extends JPanel implements DetectorListener,Calibrati
     private void initCCDB() {
             System.out.println("\nInitializing connection to CCDB"); 
             ccdb.init(Arrays.asList(new String[]{
-                    "/daq/fadc/ftcal",
-                    "/daq/tt/ftcal"}));
-            this.detectorDecoder.getFadcPanel().init(ccdb,11,"/daq/fadc/ftcal", 70,3,1); 
+                    "/test/ft/ftcal/fadc",
+                    "/test/ft/ftcal/tt"}));
+            this.detectorDecoder.getFadcPanel().init(ccdb,11,"/test/ft/ftcal/fadc", 37,20,8); 
             this.detectorDecoder.getFadcPanel().setTET(200);
      }
 
