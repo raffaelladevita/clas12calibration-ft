@@ -17,7 +17,7 @@ public class ExtendedFADCFitter implements IFADCFitter {
     public int pulseMinBin;
     public int pulseMaxBin;
     
-    int p1=1,p2=15;
+    int p1=1,p2=4;
     int mmsum,summing_in_progress;
     
     public int     t0,adc,ped,pedsum;
